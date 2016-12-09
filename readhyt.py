@@ -58,7 +58,7 @@ delay = 50.0 / 1000.0 # 50-60 ms delay. Without delay, it doesn't work.
 # I should test that delay more.
 bus = smbus.SMBus(1) # use /dev/i2c1
 
-def hyt_read():
+def read():
 	bus.write_byte(addr, 0x00) # send some stuff
 	time.sleep(delay) # wait a bit
 	reading = bus.read_i2c_block_data(addr, 0x00, 4) # read the bytes
@@ -68,11 +68,11 @@ def hyt_read():
 	temperature = 165.0 / 16383.0 * ((reading[2] * 0xFF + (reading[3] & 0xFC)) >> 2) - 40
 	return humidity, temperature
 
-def hyt_readanddisplay():
-	rh, t = hyt_read()
+def readandprint():
+	rh, t = read()
 	print "Humidity:", rh, "% RH"
 	print "Temperature:", t, "°C"
 
 if __name__ == "__main__":
-	hyt_readanddisplay()
+	readandprint()
 	
