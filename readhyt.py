@@ -63,9 +63,9 @@ def read():
 	time.sleep(delay) # wait a bit
 	reading = bus.read_i2c_block_data(addr, 0x00, 4) # read the bytes
 	# Mask the first two bits
-	humidity = ((reading[0] & 0x3F) * 0xFF + reading[1]) * (100.0 / 16383.0)
+	humidity = ((reading[0] & 0x3F) * 0x100 + reading[1]) * (100.0 / 16383.0)
 	# Mask the last two bits, shift 2 bits to the right
-	temperature = 165.0 / 16383.0 * ((reading[2] * 0xFF + (reading[3] & 0xFC)) >> 2) - 40
+	temperature = 165.0 / 16383.0 * ((reading[2] * 0x100 + (reading[3] & 0xFC)) >> 2) - 40
 	return humidity, temperature
 
 def readandprint():
