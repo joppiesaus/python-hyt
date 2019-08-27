@@ -3,6 +3,8 @@
 #
 # This program reads out IST HYT sensors(HYT-221, HYT-271, HYT-939)
 #
+# License: Public Domain/CC0
+# Original source: https://github.com/joppiesaus/python-hyt/
 #
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Humidity:
